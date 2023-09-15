@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personality</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    </head>
+    <body>
+        <div class="container" style="columns:3;">Quotes comes here</div>
+    <script>
+        function displayCard(data){
+            var data=data["data"];
+            var authorpics=["BillCosby.jpg","Francis_Bacon.jpg","henry.jpg","Francis_Bacon.jpg","marcus.jpg","Victor.jpg","BetteDavis.jpg","albert_camus.jpg","marcus.jpg","picasso.jpg"];
+            var authorarr=["https://en.wikipedia.org/wiki/Bill_Cosby","https://en.wikipedia.org/wiki/Francis_Bacon",
+            "https://en.wikipedia.org/wiki/Henry_David_Thoreau","https://en.wikipedia.org/wiki/Francis_Bacon","https://en.wikipedia.org/wiki/Cicero",
+            "https://en.wikipedia.org/wiki/Victor_Hugo","https://en.wikipedia.org/wiki/Bette_Davis","https://en.wikipedia.org/wiki/Albert_Camus",
+            "https://en.wikipedia.org/wiki/Cicero","https://en.wikipedia.org/wiki/Pablo_Picasso"];
+            for(var i=0;i<data.length;i++){
+                var article=data[i];
+                var card=`<div class="card" style="width: 18rem;">
+                        <img src="${authorpics[i]}" class="card-img-top" style="width:100%;height:300px"alt="...">
+                        <div class="card-body">
+                        <h5 class="card-title">Quote</h5>
+                        <p class="card-text">${article["quoteText"]}</p>
+                        <a href="${authorarr[i]}" target="_blank" class="btn btn-primary">${article["quoteAuthor"]}</a>
+                        </div>
+                    </div>`;
+                document.querySelector(".container").innerHTML +=card;
+            }
+        }
+        var url='https://quote-garden.onrender.com/api/v3/quotes';
+       fetch(url).then(res=>res.json()).then((res)=>{displayCard(res);});
+        // fetch(url).then((res)=>res.json()).then((res)=>{console.log(res)});
+       // }
+        
+    // fetch(url)
+    // .then((res) => res.json())
+    // .then((res) => {
+    //     showarticle(res);
+    // });
+    
+</script>
+</body>
+</html>
